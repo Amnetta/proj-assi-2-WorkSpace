@@ -49,7 +49,14 @@ pipeline {
                 echo 'packaged'
             }
         }
-
+        stage('somestage') {
+            steps {
+                dir('backend') {
+                    sh 'pwd' // prints /var/jenkins_home/workspace/proj_assi_2_starting_point/backend
+                }
+            }
+        }
+    }
 
     post {
         always {
@@ -62,7 +69,7 @@ pipeline {
         }
         failure {
               echo 'it has failed or something'
-        }         
-        
+        }
+
     }
 }
