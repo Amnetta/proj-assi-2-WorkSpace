@@ -49,10 +49,11 @@ pipeline {
                 echo 'packaged'
             }
         }
-        stage('somestage') {
+        stage('deploy') {
             steps {
                 dir('backend') {
                     sh 'pwd' // prints /var/jenkins_home/workspace/proj_assi_2_starting_point/backend
+                    sh 'cp target/root/ROOT.war /artifacts'
                 }
             }
         }
@@ -60,11 +61,15 @@ pipeline {
 
     post {
         always {
-            dir('backend') {
-                cp target/root/ROOT.war /artifacts
-            }
             echo 'generating test report....'
-            junit 'target/surefire-reports/TEST-se.jensenyh.javacourse.saltmerch.backend.IntegrationTests.Tests.xml'
+
+            sh 'ls ./backend/target/surefire-reports'
+
+            dir('backend') {
+
+               junit 'target/surefire-reports/*.xml'
+            }
+
             echo 'test report generated'
         }
         failure {
