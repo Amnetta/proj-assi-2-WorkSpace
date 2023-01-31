@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/saltmerch
+    username: jensenyh
+    password: password
+
+server:
+  port: 8099
