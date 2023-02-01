@@ -64,13 +64,6 @@ pipeline {
 
             sh 'ls ./backend/target/surefire-reports'
 
-            dir('backend') {
-
-               junit 'target/surefire-reports/*.xml'
-            }
-
-            echo 'test report generated'
-        }
         failure {
               echo 'it has failed or something'
         }
