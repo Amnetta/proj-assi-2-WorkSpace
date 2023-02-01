@@ -13,7 +13,7 @@ pipeline {
                     sh 'mvn clean'
                 }
                 echo 'downloading github project...'
-                git branch: 'main', credentialsId: 'assignment2', url: 'https://github.com/Amnetta/proj-assi-2-WorkSpace'
+                git branch: 'main', credentialsId: 'assignment2', url: 'https://github.com/Amnetta/proj-assi-2-WorkSpace.git'
             }
         }
 
@@ -33,6 +33,7 @@ pipeline {
                     sh 'mvn surefire:test'
                 }
                 echo 'starting test.....'
+                // sh 'mvn test'
 
                 echo 'finished test'
             }
@@ -44,7 +45,7 @@ pipeline {
                   sh 'mvn war:war'
                 }
                 echo 'packaging...'
-                
+
                 echo 'packaged'
             }
         }
@@ -64,8 +65,16 @@ pipeline {
 
             sh 'ls ./backend/target/surefire-reports'
 
+            dir('backend') {
+
+               junit 'target/surefire-reports/*.xml'
+            }
+
+            echo 'test report generated'
+        }
         failure {
               echo 'it has failed or something'
         }
+
     }
 }
