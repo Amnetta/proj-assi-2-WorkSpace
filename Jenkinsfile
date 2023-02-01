@@ -13,7 +13,7 @@ pipeline {
                     sh 'mvn clean'
                 }
                 echo 'downloading github project...'
-                git branch: 'main', credentialsId: 'assignment2', url: 'https://github.com/samyuktha215/proj-assi-2-starting-point.git'
+                git branch: 'main', credentialsId: 'assignment2', url: 'https://github.com/Amnetta/proj-assi-2-WorkSpace'
             }
         }
 
@@ -33,8 +33,7 @@ pipeline {
                     sh 'mvn surefire:test'
                 }
                 echo 'starting test.....'
-                // sh 'mvn test'
-                
+
                 echo 'finished test'
             }
         }
