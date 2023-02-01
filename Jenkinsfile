@@ -67,6 +67,5 @@ pipeline {
         failure {
               echo 'it has failed or something'
         }
-
     }
 }
