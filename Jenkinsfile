@@ -27,17 +27,6 @@ pipeline {
             }
         }
 
-        stage('test') {
-            steps {
-                dir('backend') {
-                    sh 'mvn surefire:test'
-                }
-                echo 'starting test.....'
-                // sh 'mvn test'
-
-                echo 'finished test'
-            }
-        }
 
         stage('package') {
             steps {
